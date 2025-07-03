@@ -1,0 +1,6 @@
+@Monexa_HostAddress = http://localhost:5217
+
+GET {{Monexa_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
