@@ -8,7 +8,7 @@ public class Transaction
     
     public decimal Amount { get; set; }
     
-    public string Currency { get; set; }
+    public string Currency { get; set; } = string.Empty;
     
     public string Description { get; set; } = string.Empty;
     
@@ -18,7 +18,7 @@ public class Transaction
     
     public Guid? ToAccountId { get; set; }
     
-    public Account Account { get; set; }
+    public Account Account { get; set; } = null!;
     public Account? ToAccount { get; set; } = null!;
 }
 
