@@ -4,9 +4,13 @@ public class Account
 {
     public Guid Id { get; set; }
     
-    public decimal Balance { get; set; }
+    public string Number  { get; set; } =  null!;
+    
+    public string Name { get; set; } = null!;
     
     public string Currency { get; set; } = string.Empty;
+    
+    public decimal Balance { get; set; }
     
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     
