@@ -6,6 +6,8 @@ using Microsoft.IdentityModel.Tokens;
 using Monexa.Data;
 using Monexa.Models;
 using Monexa.Services.Auth;
+using Monexa.Services.Transaction;
+using Monexa.Services.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +49,8 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAccountNumberGenerator, AccountNumberGenerator>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -19,12 +19,5 @@ public class Transaction
     public Guid? ToAccountId { get; set; }
     
     public Account Account { get; set; } = null!;
-    public Account? ToAccount { get; set; } = null!;
-}
-
-public enum TransactionType
-{
-    Withdrawal,
-    Deposit,
-    Transfer
+    public Account? ToAccount { get; set; }
 }
