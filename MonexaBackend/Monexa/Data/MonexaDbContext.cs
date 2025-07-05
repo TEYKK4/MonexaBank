@@ -28,6 +28,18 @@ public class MonexaDbContext : IdentityDbContext<ApplicationUser>
             .HasOne(a => a.ApplicationUser)
             .WithMany(au => au.Accounts)
             .HasForeignKey(a => a.ApplicationUserId); 
+        
+        modelBuilder.Entity<ApplicationUser>()
+            .HasIndex(u => u.UserName)
+            .IsUnique();
+
+        modelBuilder.Entity<ApplicationUser>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+
+        modelBuilder.Entity<Account>()
+            .HasIndex(u => u.Number)
+            .IsUnique();
     }
     
     public DbSet<Account> Accounts { get; set; } = null!; 
