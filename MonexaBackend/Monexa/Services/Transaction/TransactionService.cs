@@ -43,4 +43,29 @@ public class TransactionService : ITransactionService
         
         return (result > 0, null);
     }
+
+    public async Task<IEnumerable<TransactionDto>> GetTransactionsAsync(string userId)
+    {
+        var transactions = await _dbContext.Transactions
+            .Where(t =>
+                t.Account.ApplicationUserId == userId ||
+                (t.ToAccount != null && t.ToAccount.ApplicationUserId == userId))
+            .Include(t => t.Account)
+            .Include(t => t.ToAccount)
+            .OrderByDescending(t => t.CreatedAt)
+            .Select(t => new TransactionDto
+            {
+                Id = t.Id,
+                TransactionType = t.TransactionType.ToString(),
+                Amount = t.Amount,
+                Currency = t.Currency,
+                Description = t.Description,
+                CreatedAt = t.CreatedAt,
+                FromNumber = t.Account.Number,
+                ToNumber = t.ToAccount != null ? t.ToAccount.Number : null
+            })
+            .ToListAsync();
+
+        return transactions;
+    }
 }

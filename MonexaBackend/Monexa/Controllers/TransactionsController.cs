@@ -32,4 +32,17 @@ public class TransactionsController : ControllerBase
             : BadRequest(new { errors = result.Errors });
     }
 
+    
+    [Authorize]
+    [HttpGet]
+    public async Task<IActionResult> GetTransactions()
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        if (userId is null) return Unauthorized();
+        
+        var result = await _transactionService.GetTransactionsAsync(userId);
+        
+        return Ok(result);
+    }
 }
