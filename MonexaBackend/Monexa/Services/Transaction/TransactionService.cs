@@ -26,6 +26,12 @@ public class TransactionService : ITransactionService
         
         if (receiverAccount == null) return (false, "No such account number");
         
+        if (!string.Equals(senderAccount.Currency, dto.Currency, StringComparison.OrdinalIgnoreCase))
+            return (false, "Currency mismatch for sender account");
+        
+        if (!string.Equals(receiverAccount.Currency, dto.Currency, StringComparison.OrdinalIgnoreCase))
+            return (false, "Currency mismatch for receiver account");
+
         senderAccount.Balance -= dto.Amount;
         receiverAccount.Balance += dto.Amount;
         
