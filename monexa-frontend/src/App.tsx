@@ -1,16 +1,16 @@
-import {LoginForm} from "@/components/login-form.tsx";
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginPage from "@/pages/LoginPage.tsx";
+import RegisterPage from "@/pages/RegisterPage.tsx";
 function App() {
 
   return (
-    <>
-      <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-        <div className="w-full max-w-sm">
-          <LoginForm />
-        </div>
-      </div>
-    </>
-  )
+    <Router>
+        <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+    </Router>
+)
 }
 
 export default App
