@@ -24,7 +24,7 @@ export function LoginForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = await login(emailOrUsername, password);
+    const result = await login( {emailOrUsername, password} );
     if (!result.success) {
       setError(result.error || "Login failed");
     } else {

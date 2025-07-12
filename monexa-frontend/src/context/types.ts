@@ -37,7 +37,7 @@ export interface RegisterResult {
 
 export interface AuthContextType {
     user: User | null;
-    login: (emailOrUsername: string, password: string) => Promise<AuthResult>;
+    login: (userData: LoginRequest) => Promise<AuthResult>;
     register: (userData: RegisterRequest) => Promise<RegisterResult>;
     logout: () => void;
     checkAuth: () => Promise<boolean>;

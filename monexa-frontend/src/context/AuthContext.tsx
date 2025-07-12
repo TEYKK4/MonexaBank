@@ -26,6 +26,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     const login = async (userData: LoginRequest): Promise<AuthResult> => {
         setLoading(true);
+        console.log(userData);
         try {
             const response = await fetch(`${API_BASE_URL}/Auth/login`, {
                 method: 'POST',
@@ -34,6 +35,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             });
 
             const data = await response.json();
+            console.log(data.token);
 
             if (response.ok) {
                 localStorage.setItem('token', data.token);
