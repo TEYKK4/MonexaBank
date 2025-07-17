@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from "@/pages/LoginPage.tsx";
 import RegisterPage from "@/pages/RegisterPage.tsx";
+import LandingPage from "@/pages/LandingPage.tsx";
 function App() {
 
   return (
     <Router>
         <Routes>
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
         </Routes>
