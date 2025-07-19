@@ -376,14 +376,6 @@ export default function LandingPage() {
                             >
                                 <Link to="/register">Get Started Free</Link>
                             </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className={cn("text-lg px-8 py-6 border-white text-white hover:bg-white hover:text-emerald-600")}
-                                asChild
-                            >
-                                <Link to="/login">Sign In</Link>
-                            </Button>
                         </div>
                     </div>
                 </div>

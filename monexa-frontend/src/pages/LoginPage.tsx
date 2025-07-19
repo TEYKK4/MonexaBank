@@ -50,10 +50,10 @@ export default function LoginPage() {
         const result = await login(formData)
 
         if (result.success) {
-            toast.success("Account created successfully!!")
+            toast.success("Login is successful!")
             navigate("/dashboard")
         } else {
-            toast.error(result.error || "Registration failed")
+            toast.error(result.error || "Login Failed")
         }
     }
 
