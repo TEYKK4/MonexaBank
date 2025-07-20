@@ -15,6 +15,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const API_BASE_URL = 'http://localhost:5217/api';
+    const [authLoading, setAuthLoading] = useState(true);
 
     const login = async (userData: LoginRequest): Promise<AuthResult> => {
         setLoading(true);
@@ -27,7 +28,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             });
 
             const data = await response.json();
-            console.log(data.token);
 
             if (response.ok) {
                 localStorage.setItem('token', data.token);
@@ -79,6 +79,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const logout = (): void => {
         localStorage.removeItem('token');
         setUser(null);
+        console.log(user);
     };
 
     const checkAuth = async (): Promise<boolean> => {
@@ -105,7 +106,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     };
 
     useEffect(() => {
-        checkAuth();
+        checkAuth().finally(() => setAuthLoading(false));
     }, []);
 
     const value: AuthContextType = {
@@ -117,6 +118,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         loading,
         isAuthenticated: !!user,
     };
+
+    if (authLoading) {
+        return null;
+    }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
